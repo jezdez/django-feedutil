@@ -49,7 +49,7 @@ def pull_feed(feed_url, posts_to_show=None, cache_expires=None):
             posts = [ {
                 'title': entry.title,
                 'author': entry.author if entry.has_key('author') else '',
-                'summary': entry.summary if entry.has_key('summary') else summarize(entry.content[0]['value']),
+                'summary': summarize(entry.summary if entry.has_key('summary') else entry.content[0]['value']),
                 'summary_html': summarize_html(entry.description if entry.has_key('description') else entry.content[0]['value']),
                 'content': entry.description if entry.has_key('description') else entry.content[0]['value'],
                 'url': entry.link,
