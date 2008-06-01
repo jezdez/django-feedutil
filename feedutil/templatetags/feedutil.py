@@ -36,7 +36,9 @@ def pull_feed(feed_url, posts_to_show=None, cache_expires=None):
     if cache_expires is None: cache_expires = FEEDUTIL_CACHE_MIN
     cachename = 'feed_cache_' + template.defaultfilters.slugify(feed_url)
     posts = []
-    data = cache.get(cachename)
+    data = None
+    if cache_expires > 0:
+        data = cache.get(cachename)
     if data is None:
         # load feed
         try:
